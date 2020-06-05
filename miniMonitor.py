@@ -73,12 +73,12 @@ class MyDelegate(btle.DefaultDelegate):
 
             # specific data index based on the document of checkme Pro
             "fields":{
-                "ECG-HR": int(data[20:22], 16)
-                "ECG-QRS": int(data[24:28], 16)
-                "ECG-ST": int(data[28:32], 16)
-                "SpO2-PR": int(data[72:74], 16)
-                "SpO2-SpO2": int(data[76:78], 16)
-                "SpO2-SpO2": int(data[78:80], 16)
+                "ECG-HR": int(data[20:22], 16),
+                "ECG-QRS": int(data[24:28], 16),
+                "ECG-ST": int(data[28:32], 16),
+                "SpO2-PR": int(data[72:74], 16),
+                "SpO2-SpO2": int(data[76:78], 16),
+                "SpO2-SpO2": int(data[78:80], 16),
 
             },
         
