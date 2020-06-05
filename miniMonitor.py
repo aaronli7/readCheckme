@@ -9,7 +9,7 @@ FF-00-00-00-00-00-00-00-00-00-02-95-00-8A-00-8A-00-
 bytes: b'A55A2C0100000000000000000000FF0000000000000000000295008A008A007E007E00000000000000F15900'
 
 -------------data structure-----------------------
-Key, Byte length, content
+Key, Byte length, content, index
 
 header, 2, 0xA5 0x5A
 Package Size, 1
@@ -21,9 +21,9 @@ ECG-ST (mv), 2, unsigned short, index: [28:32]
 ECG-PVCs, 2, unsigned short
 ECG-R wave mark, 1, unsigned short
 ECG-note, 1, unsigned short
-SpO2-Type, 2, 0x02 (index: [48:50])
-SpO2-waveform, 10, unsigned short[5] (index: [50:72])
-SpO2-PR, 2, unsigned short, first byte is valid [72:74]
+SpO2-Type, 2, 0x02, index: [48:50]
+SpO2-waveform, 10, unsigned short[5], index: [50:72]
+SpO2-PR, 2, unsigned short (first byte is valid), index: [72:74]
 SpO2-SpO2, 1, unsigned short [76:78]
 SpO2-PI, 1, unsigned short [78:80]
 SpO2-pulse sound, 1, unsigned short
