@@ -51,7 +51,7 @@ class MyDelegate(btle.DefaultDelegate):
         print('data notify:', mydata)
 
         # call save to influxDB function
-        self.saveToDB(mydate)
+        self.saveToDB(mydata)
 
     def _str_to_int(self, s):
         """ Transform hex str into int. """
@@ -60,28 +60,28 @@ class MyDelegate(btle.DefaultDelegate):
             i -= 2**8
         return i
     
-    def saveToDB(data):
+    def saveToDB(self, data):
 
         #mini monitor data structure
         minimonitor_json_body =[
             {
-            "measurement": "random_results",
+                "measurement": "random_results",
 
-            "tags":{
-                "mode":'miniMonitor',
-            },
+                "tags":{
+                    "mode":'miniMonitor',
+                },
 
-            # specific data index based on the document of checkme Pro
-            "fields":{
-                "ECG-HR": int(data[20:22], 16),
-                "ECG-QRS": int(data[24:28], 16),
-                "ECG-ST": int(data[28:32], 16),
-                "SpO2-PR": int(data[72:74], 16),
-                "SpO2-SpO2": int(data[76:78], 16),
-                "SpO2-SpO2": int(data[78:80], 16),
+                # specific data index based on the document of checkme Pro
+                "fields":{
+                    "ECG-HR": int(data[20:22], 16),
+                    "ECG-QRS": int(data[24:28], 16),
+                    "ECG-ST": int(data[28:32], 16),
+                    "SpO2-PR": int(data[72:74], 16),
+                    "SpO2-SpO2": int(data[76:78], 16),
+                    "SpO2-SpO2": int(data[78:80], 16),
 
-            },
-        
+                },
+            }
         ]
         self.dbClient.write_points(minimonitor_json_body, time_precision='ms') # millisecond
 
