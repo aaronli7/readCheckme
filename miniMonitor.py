@@ -32,16 +32,12 @@ other, 1, unsigned short
 Battery, 1, unsigned char
 CRC checksum, 1, unsigned char
 """
-
-
 import struct
 from bluepy import btle
 import binascii
 from influxdb import InfluxDBClient
 import configparser, json, csv, math, sys, os
 import random, time
-
-
 
 class MyDelegate(btle.DefaultDelegate):
     def __init__(self, dbClient):
@@ -89,8 +85,6 @@ class MyDelegate(btle.DefaultDelegate):
         ]
         self.dbClient.write_points(minimonitor_json_body, time_precision='ms') # millisecond
 
-
-
 if __name__ == '__main__':
     heartrate_uuid = btle.UUID('8B00ACE7-EB0B-49B0-BBE9-9AEE0A26E1A3')
     notify_uuid = btle.UUID('0734594A-A8E7-4B1A-A6B1-CD5243059A57')
@@ -105,7 +99,6 @@ p = btle.Peripheral('E7:CC:E2:D0:5C:C5','random')
 # set database client as argument
 p.setDelegate(MyDelegate(client))
 
-
 try:
     print("Setting Characteristics")
     ch = p.getCharacteristics(uuid=heartrate_uuid)[0]
@@ -115,7 +108,6 @@ try:
     #enable notification
     setup_data = b"\x01\x00"
     p.writeCharacteristic(noti_handle, setup_data, withResponse=True)
-
 
     print("Setting Done, writing now")
     ch.write(struct.pack('<bb', 0x01, 0x00))
