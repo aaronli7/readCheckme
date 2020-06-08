@@ -26,6 +26,7 @@ if __name__ == '__main__':
     notify_uuid = btle.UUID('0734594A-A8E7-4B1A-A6B1-CD5243059A57')
 
 p = btle.Peripheral('E7:CC:E2:D0:5C:C5','random')
+p.setMTU(244) # This is important, otherwise the device only receive 20 bytes data.
 p.setDelegate(MyDelegate())
 
 #for i in p.getDescriptors():
