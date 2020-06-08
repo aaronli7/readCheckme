@@ -96,6 +96,9 @@ if __name__ == '__main__':
 # MAC address of your peripheral device
 p = btle.Peripheral('E7:CC:E2:D0:5C:C5','random')
 
+# set the MTU, important!
+p.setMTU(244)
+
 # set database client as argument
 p.setDelegate(MyDelegate(client))
 
